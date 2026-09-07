@@ -1,0 +1,37 @@
+# Maven build output
+target/
+**/target/
+
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+
+# Log files
+*.log
+
+# IDE and editor settings
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.factorypath
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# Scala Metals / Bloop
+.bloop/
+.metals/

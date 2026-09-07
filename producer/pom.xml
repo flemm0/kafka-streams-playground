@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    This is the Maven project file for the producer submodule.
+    Maven reads this file to learn how to build the module and which
+    libraries it needs.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Version of Maven's project-file format. This is normally always 4.0.0. -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        The root project's POM is this module's parent.
+        The producer inherits shared settings such as groupId and version
+        from ../pom.xml.
+    -->
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>kafka-streams-playground</artifactId>
+        <!-- Version of the root project. -->
+        <version>1.0.0</version>
+        <!-- Location of the parent POM relative to this file. -->
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <!-- Name of this particular Maven module. -->
+    <artifactId>producer</artifactId>
+
+    <!-- Build this module as a Java JAR file. -->
+    <packaging>jar</packaging>
+
+    <!-- Project-wide build settings. -->
+    <properties>
+        <!-- Compile the Java code using Java 17 language features and APIs. -->
+        <maven.compiler.release>17</maven.compiler.release>
+    </properties>
+
+    <!-- Libraries that this module needs in order to compile and run. -->
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.26.1</version>
+        </dependency>
+    </dependencies>
+
+</project>
