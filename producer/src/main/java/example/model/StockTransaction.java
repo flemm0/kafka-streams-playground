@@ -1,6 +1,6 @@
 package example.model;
 
-class StockTransaction {
+public class StockTransaction {
 
     private String tradeId;
     private String ticker;
@@ -8,12 +8,12 @@ class StockTransaction {
     private double quantity;
     private long tradeTimestamp;
     private String exchange;
-    private String tradeCondition; // REGULAR || ODD_LOT || AVG_PRICE
-    private String tradeType; // BUY || SELL
+    private StockTradeCondition tradeCondition;
+    private String tradeType;
 
     public StockTransaction(String tradeId, String ticker, double price,
                             double quantity, long tradeTimestamp, String exchange,
-                            String tradeCondition, String tradeType) {
+                            StockTradeCondition tradeCondition, String tradeType) {
         this.tradeId = tradeId;
         this.ticker = ticker;
         this.price = price;
@@ -48,7 +48,7 @@ class StockTransaction {
         return exchange;
     }
 
-    public String getTradeCondition() {
+    public StockTradeCondition getTradeCondition() {
         return tradeCondition;
     }
 
