@@ -38,7 +38,7 @@ public class StockTransactionProducer {
                 new KafkaProducer<String, StockTransaction>(properties, new StringSerializer(), new StockTransactionSerializer())) {
             LOG.info("starting producing messages...");
             while(!Thread.currentThread().isInterrupted()) {
-                int numCurrentTransactions = (int) Math.round(Math.random() * 10); // send between 0 and 10 transactions per iteration
+                int numCurrentTransactions = 1 + (int) Math.round(Math.random() * 10); // send between 1 and 10 transactions per iteration
                 Stream<StockTransaction> transactionStream = 
                     DataGenerator.generateRandomStockTransactions(numCurrentTransactions);
                 transactionStream.forEach(transaction -> {
@@ -49,10 +49,11 @@ public class StockTransactionProducer {
                         }
                     });
                 });
+
+                double delayMs = -Math.log(1.0 - Math.random()) / MESSAGES_PER_SECOND * 1000.0;
+                Thread.sleep((long) delayMs);
             }
 
-            double delayMs = -Math.log(1.0 - Math.random()) / MESSAGES_PER_SECOND * 1000.0;
-            Thread.sleep((long) delayMs);
         } catch (InterruptedException e) {
             LOG.info("Producer interrupted, shutting down...");
             Thread.currentThread().interrupt();
