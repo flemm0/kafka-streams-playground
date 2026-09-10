@@ -18,7 +18,7 @@ if [ "$ALL_RUNNING" = false ]; then
 else
     echo "All Kafka containers are running. Proceeding to create topics."
 
-    topics=("my-topic")
+    topics=("my-topic" "market.trades.raw")
     for topic in "${topics[@]}"; do
         echo "Creating topic: ${topic}"
         docker exec -it kafka-1 kafka-topics --create --topic "${topic}" --bootstrap-server kafka-1:9092 --replication-factor 3 --partitions 3
