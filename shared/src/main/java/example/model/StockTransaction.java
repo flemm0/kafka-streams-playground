@@ -24,36 +24,12 @@ public class StockTransaction {
         this.tradeType = tradeType;
     }
 
-    public String getTradeId() {
-        return tradeId;
-    }
-
-    public String getTicker() {
-        return ticker;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public long getTradeTimestamp() {
-        return tradeTimestamp;
-    }
-
-    public String getExchange() {
-        return exchange;
-    }
-
-    public StockTradeCondition getTradeCondition() {
-        return tradeCondition;
-    }
-
-    public String getTradeType() {
-        return tradeType;
-    }
-
+    public String getTradeId() { return tradeId; }
+    public String getTicker() { return ticker; }
+    public double getPrice() { return price; }
+    public double getQuantity() { return quantity; }
+    public long getTradeTimestamp() { return tradeTimestamp; }
+    public String getExchange() { return exchange; }
+    public StockTradeCondition getTradeCondition() { return tradeCondition; }
+    public String getTradeType() { return tradeType; }
 }

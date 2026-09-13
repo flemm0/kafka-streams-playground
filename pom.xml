@@ -8,7 +8,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>shared</module>
         <module>producer</module>
-        <!-- <module>streaming-apps</module> -->
+        <module>streaming-apps</module>
     </modules>
 </project>

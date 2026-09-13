@@ -28,7 +28,7 @@
     </parent>
 
     <!-- Name of this particular Maven module. -->
-    <artifactId>producer</artifactId>
+    <artifactId>streaming-apps</artifactId>
 
     <!-- Build this module as a Java JAR file. -->
     <packaging>jar</packaging>
@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
+            <artifactId>kafka-streams</artifactId>
             <version>4.3.1</version>
         </dependency>
         <dependency>
@@ -60,11 +60,6 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.26.1</version>
-        </dependency>
-        <dependency>
-            <groupId>net.datafaker</groupId>
-            <artifactId>datafaker</artifactId>
-            <version>2.7.0</version>
         </dependency>
     </dependencies>
 
