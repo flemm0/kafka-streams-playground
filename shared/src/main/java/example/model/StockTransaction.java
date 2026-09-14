@@ -1,5 +1,8 @@
 package example.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class StockTransaction {
 
     private String tradeId;
@@ -11,9 +14,15 @@ public class StockTransaction {
     private StockTradeCondition tradeCondition;
     private String tradeType;
 
-    public StockTransaction(String tradeId, String ticker, double price,
-                            double quantity, long tradeTimestamp, String exchange,
-                            StockTradeCondition tradeCondition, String tradeType) {
+    @JsonCreator
+    public StockTransaction(@JsonProperty("tradeId") String tradeId,
+                            @JsonProperty("ticker") String ticker,
+                            @JsonProperty("price") double price,
+                            @JsonProperty("quantity") double quantity,
+                            @JsonProperty("tradeTimestamp") long tradeTimestamp,
+                            @JsonProperty("exchange") String exchange,
+                            @JsonProperty("tradeCondition") StockTradeCondition tradeCondition,
+                            @JsonProperty("tradeType") String tradeType) {
         this.tradeId = tradeId;
         this.ticker = ticker;
         this.price = price;
