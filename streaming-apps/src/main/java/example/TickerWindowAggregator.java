@@ -26,12 +26,12 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Properties;
 import java.time.Duration;
-import java.util.concurrent.CountDownLatch;
 
 public class TickerWindowAggregator {
 
     private static final Logger LOG = LogManager.getLogger(TickerWindowAggregator.class);
 
+    @SuppressWarnings("resource")
     public static void main(String[] args) {
         LOG.info("Starting TickerWindowAggregator...");
         LOG.info("Setting up Kafka Streams configuration...");
@@ -85,36 +85,17 @@ public class TickerWindowAggregator {
 
         KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), streamsConfig);
 
-        CountDownLatch shutdownLatch = new CountDownLatch(1);
-
         kafkaStreams.setUncaughtExceptionHandler(exception -> {
             LOG.error("Unhandled exception in Kafka Streams, shutting down", exception);
             return StreamsUncaughtExceptionHandler.StreamThreadExceptionResponse.SHUTDOWN_CLIENT;
         });
 
-        kafkaStreams.setStateListener((newState, oldState) -> {
-            if (newState == KafkaStreams.State.ERROR) {
-                LOG.error("KafkaStreams entered ERROR state, releasing latch");
-                shutdownLatch.countDown();
-            }
-        });
-
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             LOG.info("Shutdown signal received, closing KafkaStreams...");
             kafkaStreams.close(Duration.ofSeconds(10));
-            shutdownLatch.countDown();
         }, "streams-shutdown-hook"));
 
-        try {
-            kafkaStreams.start();
-            shutdownLatch.await();
-        } catch (Throwable e) {
-            LOG.error("Error starting KafkaStreams", e);
-        } finally {
-            kafkaStreams.close(Duration.ofSeconds(10));
-        }
-
-        System.exit(0);
+        kafkaStreams.start();
     }
 
 }
